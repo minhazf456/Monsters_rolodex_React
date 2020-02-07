@@ -1,13 +1,17 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
+
+import { CardList } from './components/card-list/card-list.component';
+import { SearchBox } from './components/search-box/search-box.component';
+
 import './App.css';
 
-class App extends Component { // component is a property on react
+class App extends Component {
   constructor() {
     super();
+
     this.state = {
-      monsters: []
+      monsters: [],
+      searchField: ''
     };
   }
 
@@ -25,8 +29,16 @@ class App extends Component { // component is a property on react
     this.setState({ searchField: event.target.value });
   };
 
-  render() {  // this is the built in method directly comes from the react component library
+
+// So when we say monsters and search fields like this we'll be pulling off the search field value and
+// the monster's value off of our state object and setting them to constants called Monsters and search
+// field.
+  
+render() {  // this is the built in method directly comes from the react component library
     const { monsters, searchField } = this.state;
+// so above line is equivalent to as follows
+// const monsters= this.state.monsters;
+// const searchField= this.state.searchField;
     const filteredMonsters = monsters.filter(monster =>
       monster.name.toLowerCase().includes(searchField.toLowerCase())
     );
